@@ -1,2 +1,2 @@
-data/*
-!data/.gitkeep
+module_*/data/*
+!module_*/data/.gitkeep
