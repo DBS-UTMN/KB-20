@@ -1,0 +1,24 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+  db-master:
+    image: postgres:14.9
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data-master
+    environment:
+      POSTGRES_PASSWORD: my_super_secret
+      POSTGRES_USER: ships
+  db-slave:
+    image: postgres:14.9
+    restart: always
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data-slave
+    environment:
+      POSTGRES_PASSWORD: my_super_secret
+      POSTGRES_USER: ships
