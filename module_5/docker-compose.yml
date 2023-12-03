@@ -3,12 +3,13 @@ version: '3.1'
 
 services:
   db:
-    image: postgres:14.9
+    build: .
     restart: always
     ports:
       - "5432:5432"
     volumes:
-      - ./data:/var/lib/postgresql/data-master
+      - ./data:/var/lib/postgresql/data
+      - ./postgres.conf:/var/lib/postgresql/data/postgresql.conf
     environment:
       POSTGRES_PASSWORD: my_super_secret
       POSTGRES_USER: ships
