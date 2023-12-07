@@ -26,12 +26,12 @@
 ###### SQL-иньекции
 - Создать процедуру вставки данных в таблицу (my_table заменить на лубую существующую) через процедуру со следующим DDL:
 ```sql
-CREATE OR REPLACE PROCEDURE my_procedure(input_param TEXT)
+CREATE OR REPLACE PROCEDURE my_procedure(n_table text,n_column text, n_param TEXT)
 AS $$
 BEGIN
-    INSERT INTO my_table (column_name) VALUES (input_param);
+    execute format('INSERT INTO %s (%s) VALUES (''%s'');',n_table, n_column, n_param);
 END;
 $$ LANGUAGE plpgsql;
 ```
-- Подать в параметр input_param такое значение, которое сможет удалить одну из таблиц в БД.
+- Подать в параметры такие значения, после которых одна из таблиц в БД будет удалена.
 
